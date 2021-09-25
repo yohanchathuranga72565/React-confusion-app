@@ -14,8 +14,8 @@ function RenderCard({item, isLoading, errMess}){
             <h4>{errMess}</h4>
         );
     }
-    else
-    {    return(
+    else{
+       return(
             <Card>
                     <CardImg src={item.image} alt={item.name} />
                     <CardBody>
@@ -35,10 +35,10 @@ const Home = (props) => {
                     <RenderCard item={props.dish} isLoading={props.dishesLoading} errMess={props.dishesErrMess}/>
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.promotion} />
+                    <RenderCard item={props.promotion}/>
                 </div>
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.leader} />
+                    <RenderCard item={props.leader}  />
                 </div>
             </div>
         </div>
