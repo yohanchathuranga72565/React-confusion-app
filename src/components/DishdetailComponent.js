@@ -7,11 +7,6 @@ import { Loading  } from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
 
 
-
-
- 
-
-
     function RenderDish({dish}){
         return(
             <Card>
@@ -27,7 +22,7 @@ import {baseUrl} from '../shared/baseUrl';
 
 
 
-    function RenderComments({comments, dishId, addComment}){
+    function RenderComments({comments, dishId, postComment}){
         if(comments){
             let modifyComment = comments.map((comment)=>{
                 return(
@@ -50,7 +45,7 @@ import {baseUrl} from '../shared/baseUrl';
                 <div className="row">
                     <CommentForm className="my-2"
                         dishId={dishId}
-                        addComment={addComment }
+                        postComment={postComment }
                     />
                 </div>
                 </React.Fragment>
@@ -64,7 +59,7 @@ import {baseUrl} from '../shared/baseUrl';
         }
     }
 
-    const DishDetail = ({dish, comments, dishId, addComment, isLoading, errMess}) => { 
+    const DishDetail = ({dish, comments, dishId, postComment, isLoading, errMess}) => { 
         if(isLoading) {
             return(
                 <div className="container">
@@ -112,7 +107,7 @@ import {baseUrl} from '../shared/baseUrl';
                             <RenderComments
                                 comments={comments} 
                                 dishId = {dish.id}
-                                addComment = {addComment}
+                                postComment = {postComment}
                             />
                             
                         </div>
@@ -147,7 +142,7 @@ import {baseUrl} from '../shared/baseUrl';
 
         handleSubmit(values){
             this.toggleModal();
-            this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
+            this.props.postComment(this.props.dishId, values.rating, values.name, values.comment);
         }
 
 
