@@ -19,9 +19,6 @@ import {baseUrl} from '../shared/baseUrl';
         );
     }
 
-
-
-
     function RenderComments({comments, dishId, postComment}){
         if(comments){
             let modifyComment = comments.map((comment)=>{
