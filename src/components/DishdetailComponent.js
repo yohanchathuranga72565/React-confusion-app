@@ -5,10 +5,16 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { addComment } from '../redux/ActionCreators';
 import { Loading  } from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
+import {FadeTransform, Fade, Stagger} from 'react-animation-components'
 
 
     function RenderDish({dish}){
         return(
+            <FadeTransform in
+                transformProps={{ 
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                 }}
+           >
             <Card>
                 <CardImg width="100%" src = {baseUrl + dish.image} alt = {dish.name}/>
                 <CardBody>
@@ -16,6 +22,7 @@ import {baseUrl} from '../shared/baseUrl';
                     <CardText>{dish.description}</CardText>
                 </CardBody>
             </Card>
+            </FadeTransform>
         );
     }
 
@@ -24,13 +31,14 @@ import {baseUrl} from '../shared/baseUrl';
             let modifyComment = comments.map((comment)=>{
                 return(
                     <React.Fragment>
+                        <Fade in>
                         <div className = "row">
                             <p>{comment.comment}</p>
                         </div>
                         <div className = "row">
                             <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US',{year:'numeric',month:'short', day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</p>  
                         </div>
-                        
+                        </Fade>  
                     </React.Fragment>
                 );
                 console.log(modifyComment);
@@ -38,7 +46,10 @@ import {baseUrl} from '../shared/baseUrl';
 
             return(
                 <React.Fragment>
+                <Stagger in>
+                    
                 {modifyComment}
+                </Stagger>
                 <div className="row">
                     <CommentForm className="my-2"
                         dishId={dishId}
